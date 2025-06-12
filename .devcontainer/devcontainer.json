@@ -6,7 +6,6 @@
     },
     
 	"features": {
-        "ghcr.io/devcontainers/features/node:latest": {}
     },
 
 	"forwardPorts": [],
