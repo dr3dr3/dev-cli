@@ -5,7 +5,9 @@
         "dockerfile": "Dockerfile"
     },
 
-    "postCreateCommand": "echo '' && figlet -k -c 'DR3 CLI TOOLS' && echo 'Welcome to the DR3 CLI Tools development environment!' && echo ''",
+    "postCreateCommand": "echo 'Ready'",
+
+    "postStartCommand": "echo 'Hello'",
 
     "customizations": {
         "vscode": {
@@ -13,7 +15,8 @@
                 "github.vscode-pull-request-github",
                 "github.copilot",
                 "redhat.vscode-yaml",
-                "ms-kubernetes-tools.vscode-kubernetes-tools"
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
+                "1Password.op-vscode"
             ]
         }
     },

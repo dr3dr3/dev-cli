@@ -1,3 +1,6 @@
+# Kubectl configuration files
+*.temp
+
 # Logs
 logs
 *.log

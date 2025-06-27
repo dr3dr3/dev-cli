@@ -4,8 +4,21 @@ FROM alpine:${ALPINE_VERSION}
 LABEL maintainer="Andre Dreyer"
 
 # Install basic utilities
-RUN apk add --no-cache bash bash-completion curl git gcompat openssl figlet
+RUN apk add --no-cache shadow zsh nano fzf eza bat nerd-fonts curl git gcompat openssl
 RUN git config --global user.name "Andre Dreyer" && git config --global user.email "git@andredreyer.com"
+
+# Setup shell
+# Update this to be git clone from my dotfiles repo
+RUN cp /workspaces/dev-cli/.dotfiles/.zshenv $HOME/.zshenv && \
+    cp /workspaces/dev-cli/.dotfiles/.zshrc $HOME/.config/zsh/.zshrc && \
+    cp /workspaces/dev-cli/.dotfiles/aliases $HOME/.config/zsh/aliases && \
+    cp /workspaces/dev-cli/.dotfiles/.p10k.zsh $HOME/.config/zsh/.p10k.zsh && \
+    chsh -s $(which zsh)
+
+# Install 1Password CLI
+RUN echo https://downloads.1password.com/linux/alpinelinux/stable/ >> /etc/apk/repositories && \
+    wget https://downloads.1password.com/linux/keys/alpinelinux/support@1password.com-61ddfc31.rsa.pub -P /etc/apk/keys && \
+    apk update && apk add 1password-cli
 
 # Install GitHub CLI
 RUN apk add --no-cache github-cli
@@ -44,4 +57,4 @@ RUN kubectl krew install ctx && \
     kubectl krew install neat && \
     kubectl krew install score
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/zsh" ]
