@@ -8,6 +8,12 @@ You will need to setup 1Password with the relevant Srvice Account token
 export OP_SERVICE_ACCOUNT_TOKEN=xxxx
 ```
 
+### Initialize ZSH
+
+```bash
+eval "$(starship init zsh)"
+```
+
 ## Instructions
 
 1. Choose which Kubernetes cluster you want to work on (based on directories)
