@@ -22,7 +22,7 @@ RUN echo https://downloads.1password.com/linux/alpinelinux/stable/ >> /etc/apk/r
 RUN apk add --no-cache github-cli
 
 # Install Talosctl
-RUN curl -sL https://talos.dev/install | sh
+RUN curl -sL https://talos.dev/install | sh -s -- -y
 RUN alias t=talosctl
 
 # Install Kubectl
