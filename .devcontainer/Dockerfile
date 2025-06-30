@@ -4,16 +4,14 @@ FROM alpine:${ALPINE_VERSION}
 LABEL maintainer="Andre Dreyer"
 
 # Install basic utilities
-RUN apk add --no-cache shadow zsh nano fzf eza bat nerd-fonts curl git gcompat openssl
+RUN apk add --no-cache shadow zsh starship nano fzf eza bat nerd-fonts curl git gcompat openssl
 RUN git config --global user.name "Andre Dreyer" && git config --global user.email "git@andredreyer.com"
 
-# Setup shell
-# Update this to be git clone from my dotfiles repo
-RUN cp /workspaces/dev-cli/.dotfiles/.zshenv $HOME/.zshenv && \
-    cp /workspaces/dev-cli/.dotfiles/.zshrc $HOME/.config/zsh/.zshrc && \
-    cp /workspaces/dev-cli/.dotfiles/aliases $HOME/.config/zsh/aliases && \
-    cp /workspaces/dev-cli/.dotfiles/.p10k.zsh $HOME/.config/zsh/.p10k.zsh && \
-    chsh -s $(which zsh)
+# Install and setup Starship for ZSH
+RUN curl -sS https://starship.rs/install.sh | sh
+ENV ZDOTDIR=/workspaces/dev-cli/shell
+ENV STARSHIP_CONFIG=/workspaces/dev-cli/shell/.config/starship.toml
+ENV STARSHIP_CACHE=workspaces/dev-cli/.starship/cache
 
 # Install 1Password CLI
 RUN echo https://downloads.1password.com/linux/alpinelinux/stable/ >> /etc/apk/repositories && \
