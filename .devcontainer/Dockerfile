@@ -8,7 +8,7 @@ RUN apk add --no-cache shadow zsh starship nano fzf eza bat nerd-fonts curl git 
 RUN git config --global user.name "Andre Dreyer" && git config --global user.email "git@andredreyer.com"
 
 # Install and setup Starship for ZSH
-RUN curl -sS https://starship.rs/install.sh | sh
+RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 ENV ZDOTDIR=/workspaces/dev-cli/shell
 ENV STARSHIP_CONFIG=/workspaces/dev-cli/shell/.config/starship.toml
 ENV STARSHIP_CACHE=workspaces/dev-cli/.starship/cache
@@ -22,7 +22,7 @@ RUN echo https://downloads.1password.com/linux/alpinelinux/stable/ >> /etc/apk/r
 RUN apk add --no-cache github-cli
 
 # Install Talosctl
-RUN curl -sL https://talos.dev/install | sh -s -- -y
+RUN curl -sL https://talos.dev/install | sh
 RUN alias t=talosctl
 
 # Install Kubectl
