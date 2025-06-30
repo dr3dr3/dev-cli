@@ -7,7 +7,7 @@
 
     "postCreateCommand": "echo 'Ready'",
 
-    "postStartCommand": "eval '$(starship init zsh)'",
+    "postStartCommand": "echo 'Hello'",
 
     "customizations": {
         "vscode": {
